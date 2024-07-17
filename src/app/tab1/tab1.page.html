@@ -1,17 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title> Our Healthy hair journey </ion-title>
+    <a href="/tabs/admin-page">admin</a>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <main>
+    <ion-card class="card">
+      <h5 class="featured-post">featured post</h5>
+      <div style="width: 65%">
+        <ion-card-header class="card-header">
+          <ion-card-title>
+            <h3 class="title">
+              The right way to grow your baby's edges
+            </h3></ion-card-title
+          >
+        </ion-card-header>
+        <ion-card-content class="card-content">
+          <p class="title-paragraph">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
+            praesentium dolores doloribus quo velit culpa quaerat alias qui
+            ullam ducimus at reprehenderit illo tempore voluptatibus amet
+            exercitationem, molestiae ex ipsam.
+          </p>
+          <ion-button class="btn btn-more">Read More</ion-button>
+        </ion-card-content>
+      </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+      <div class="img">
+        <img src="../../assets/images/My princess @mijka_renee.jpeg" alt="" />
+      </div>
+    </ion-card>
+    <div class="sidebar">
+      <section class="about">About</section>
+      <section class="s">Follow Us</section>
+    </div>
+  </main>
+  <app-post></app-post>
+ 
 </ion-content>

@@ -1,0 +1,28 @@
+<main>
+  <div *ngIf="errorMessage" class="error-message">
+{{ errorMessage }}
+</div>
+  <ion-toolbar>
+    <ion-button> Browse All Post</ion-button>
+
+    <div class="post-card" *ngIf="data">
+      
+     
+      <ion-card *ngFor="let item of data">
+        <div class="img">
+          <img src="" alt="" />
+        </div>
+        <ion-card-header class="card-header">
+          <ion-card-title>
+            <h3 class="title">
+             {{item.title}}
+            </h3></ion-card-title
+          >
+          <ion-card-subtitle>{{item.category}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>{{item.snippet}}</ion-card-content>
+        <a [routerLink]="['/post', item.id]"> <ion-button>Read full article</ion-button> </a>
+      </ion-card>
+    </div>
+  </ion-toolbar>
+</main>

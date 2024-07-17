@@ -1,0 +1,22 @@
+{
+    "blog": [
+        {
+            "id": 1,
+            "title": "First title",
+            "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet,praesentium dolores doloribus quo velit culpa quaerat alias quiullam ducimus at reprehenderit illo tempore voluptatibus amet exercitationem, molestiae ex ipsam",
+            "category": "edges",
+            "img": "",
+            "snippet": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet,",
+            "date": ""
+        },
+        {
+            "id": 2,
+            "title": "Second title",
+            "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet,praesentium dolores doloribus quo velit culpa quaerat alias quiullam ducimus at reprehenderit illo tempore voluptatibus amet exercitationem, molestiae ex ipsam",
+            "category": "scalp",
+            "img": "",
+            "snippet": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet,",
+            "date": ""
+        }
+    ]
+}

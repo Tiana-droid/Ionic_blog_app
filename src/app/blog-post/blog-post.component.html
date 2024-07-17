@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-back-button>Go back</ion-back-button>
+  <ion-toolbar>
+    <ion-title> Our Healthy hair journey </ion-title>
+    <a href="/tabs/admin">admin</a>
+  </ion-toolbar>
+</ion-header>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+<div *ngIf="post">
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+  <p>{{ post.category }}</p>
+  <p>{{ post.date }}</p>
+</div>
