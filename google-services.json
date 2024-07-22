@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "428893778714",
+    "project_id": "ionic-blog-app",
+    "storage_bucket": "ionic-blog-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428893778714:android:9a22ea846894bfc97932a3",
+        "android_client_info": {
+          "package_name": "com.tiana.blog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAt5brUJ2UsEza7-7b3haV7wAZWNyt-LY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
