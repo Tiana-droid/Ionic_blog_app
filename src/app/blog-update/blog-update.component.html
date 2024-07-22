@@ -1,36 +1,38 @@
 <ion-header [translucent]="true" class="header">
-  <ion-back-button>Go back</ion-back-button>
+  <ion-back-button></ion-back-button>
   <ion-toolbar>
     <ion-title>
-     Create a New Post
+      Edit Your Blog Post
     </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
-  <form (ngSubmit)="createNewPost()">
+  <form *ngIf="post" (ngSubmit)="updatePost()">
     <ion-item>
       <ion-label position="floating">Title</ion-label>
-      <ion-input [(ngModel)]="newPost.title" name="title" required></ion-input>
+      <ion-input [(ngModel)]="post.title" name="title" [value]="['title']" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Content</ion-label>
-      <ion-textarea [(ngModel)]="newPost.content" name="content" required></ion-textarea>
+      <ion-textarea [(ngModel)]="post.content" name="content" required></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Category</ion-label>
-      <ion-input [(ngModel)]="newPost.category" name="category" required></ion-input>
+      <ion-input [(ngModel)]="post.category" name="category" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Image URL</ion-label>
-      <ion-input [(ngModel)]="newPost.img" name="img"></ion-input>
+      <ion-input [(ngModel)]="post.img" name="img"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Snippet</ion-label>
-      <ion-input [(ngModel)]="newPost.snippet" name="snippet" required></ion-input>
+      <ion-input [(ngModel)]="post.snippet" name="snippet" required></ion-input>
     </ion-item>
-    <ion-button expand="full" type="submit">Create New Post</ion-button>
+    <ion-button expand="full" type="submit">Update Post</ion-button>
   </form>
 </ion-content>
+
 

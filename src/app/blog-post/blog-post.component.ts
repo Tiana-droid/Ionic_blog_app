@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { BlogPost } from '../api.service';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { IonHeader, IonBackButton, IonToolbar, IonTitle } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-blog-post',
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.scss'],
-  imports: [IonTitle, IonToolbar, IonBackButton, IonHeader, CommonModule],
+  imports: [IonicModule, CommonModule],
   standalone: true,
 })
 export class BlogPostComponent implements OnInit {
@@ -33,4 +33,3 @@ export class BlogPostComponent implements OnInit {
     }
   }
 }
-

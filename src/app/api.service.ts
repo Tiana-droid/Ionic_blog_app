@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 export interface BlogPost {
   id: number;
@@ -51,13 +52,44 @@ export class ApiService {
     return this.http.put<BlogPost>(this.apiUrl, payload, { headers });
   }
 
-  putData(id: number, data: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/data/${id}`, data);
+
+  updatePosts(posts: BlogPost[]): Observable<any> {
+    return this.http.put(`${this.apiUrl}`,  { blog: posts })}
+  
+
+  deletePost(id: number): Observable<any> {
+    return this.getData().pipe(
+      map(posts => {
+        // Filter out the post with the specific ID
+        const updatedPosts = posts.filter(post => post.id !== id);
+        // Return the updated posts array
+        return updatedPosts;
+      }),
+      switchMap(updatedPosts => {
+        // Send the updated posts array back to the API
+        return this.updatePosts(updatedPosts);
+      }),
+      catchError(error => {
+        console.error('Error deleting post', error);
+        return throwError(() => new Error(error));
+      })
+    );
   }
 
-  deleteData(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/data/${id}`);
+  updatePost(post: BlogPost): Observable<any> {
+    const url = `${this.apiUrl}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.masterKey}`
+    });
+    return this.http.put(url,  { blog: [post] } , { headers }).pipe(
+      catchError(error => {
+        console.error('Error updating post', error);
+        return throwError(() => new Error(error));
+      })
+    );
   }
+  
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Unknown error!';
@@ -70,19 +102,5 @@ export class ApiService {
     }
     console.error(errorMessage);
     return throwError(errorMessage);
-  }
-}
-
-
-export class IdGeneratorService {
-  private currentId: number;
-
-  constructor() {
-    this.currentId = 0; // Start the counter from 0
-  }
-
-  generateUniqueId(): number {
-    this.currentId += 1;
-    return this.currentId;
   }
 }

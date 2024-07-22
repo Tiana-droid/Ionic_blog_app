@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import { BlogPostComponent } from '../blog-post/blog-post.component';
 import { Tab3Component } from '../tab3/tab3.component';
+import { BlogUpdateComponent } from '../blog-update/blog-update.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
       {
-        path: 'admin-page',
+        path: 'postings',
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
       },
       
@@ -26,7 +27,9 @@ const routes: Routes = [
     ]
   },
   { path: 'post/:id', component: BlogPostComponent },
-  { path: 'tabs/admin', component: Tab3Component },
+  { path: 'tabs/admin-page', component: Tab3Component },
+  { path: 'post-update/:id', component: BlogUpdateComponent },
+  
   {
     path: '',
     redirectTo: '/tabs/index',
