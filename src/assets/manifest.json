@@ -1,0 +1,37 @@
+{
+    "short_name": "blog-app",
+    "name": "blog-app",
+    "icons": [
+      {
+        "src": "./icon/android-chrome-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "./icon/android-chrome-512x512.png",
+        "type": "image/png",
+        "sizes": "512X512"
+      }
+    ],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "background_color": "#1976d2",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#1976d2",
+    "description": "A blog app",
+    "screenshots": [
+      {
+        "src": "/assets/images/39eeb229-5c01-4d73-b26b-e0f8831b81ae.jpeg",
+        "type": "image/png",
+        "sizes": "736x820",
+        "form_factor": "narrow"
+      },
+      {
+        "src": "/assets/images/Pin by Ilse Blokker on Knutselen _ Diy candles, Taper candles, Rose gold decor.jpeg",
+        "type": "image/jpg",
+        "sizes": "624x1109",
+        "form_factor": "wide"
+      }
+    ]
+  }
