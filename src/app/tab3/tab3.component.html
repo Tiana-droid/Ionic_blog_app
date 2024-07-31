@@ -1,5 +1,5 @@
 <ion-header [translucent]="true" class="header">
-  <ion-back-button></ion-back-button>
+  <ion-back-button>Go back</ion-back-button>
   <ion-toolbar>
     <ion-title> Our Healthy hair journey - Admin Page </ion-title>
   </ion-toolbar>
@@ -24,17 +24,18 @@
      
       <div class="icons">
         <ion-button (click)="editPost(item)"> <ion-icon name="pencil"> </ion-icon></ion-button>
-        <a [routerLink]="['/tabs/postings']">
-          <ion-button>
-            <ion-icon name="paper-plane"></ion-icon>
-          </ion-button>
-        </a>
         <ion-button (click)="deletePost(item.id)" color="danger">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
       </div>
     </ion-card>
-  </div>
+  </div> <br> <br>
+
+  <a [routerLink]="['/tabs/postings']" class="router">
+    <ion-button class="new_post">
+      Create New Post
+    </ion-button>
+  </a>
   <app-blog-update  *ngIf="selectedPost"
   [post]="selectedPost"
   (updatePostEvent)="onUpdatePost($event)"></app-blog-update>

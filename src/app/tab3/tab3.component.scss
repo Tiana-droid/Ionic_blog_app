@@ -22,7 +22,7 @@
 
   .icons {
     padding: 16px;
-    width: 30%;
+    width: 15%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,4 +46,13 @@
   align-items: center;
   justify-content: space-between;
 
+}
+
+.router {
+  width: 100%;
+  display: block;
+
+  .new_post {
+    width: inherit;
+  }
 }

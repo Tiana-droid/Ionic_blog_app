@@ -56,19 +56,29 @@ export class Tab3Component  implements OnInit {
   }
 
   onUpdatePost(updatedPost: BlogPost) {
-    this.apiService.updatePost(updatedPost).subscribe(
-      response => {
-        console.log('Post updated:', response);
-        // Update the local posts array
-        const index = this.posts.findIndex(post => post.id === updatedPost.id);
-        if (index !== -1) {
-          this.posts[index] = updatedPost;
+    console.log('updating this post', this.selectedPost); // Logs the selected post to debug
+    this.apiService.getData().subscribe((post) => {
+      // Append the new post to the existing posts
+      const updatedPosts = [...post, this.selectedPost];
+
+      // Send the updated posts array back to the API
+      this.apiService.updatePost(updatedPost).subscribe(
+        (response) => {
+          console.log('Post updated:', response);
+          // Update the local posts array
+          const index = this.posts.findIndex(
+            (post) => post.id === updatedPost.id
+          );
+          if (index !== -1) {
+            this.posts[index] = updatedPost;
+          }
+          this.selectedPost = null; // Deselect the post after successful update
+          window.location.reload();
+        },
+        (error) => {
+          console.error('Error updating post:', error);
         }
-        this.selectedPost = null; // Deselect the post after successful update
-      },
-      error => {
-        console.error('Error updating post:', error);
-      }
-    );
+      );
+    });
   }
-}//Tiana-droid/Ionic_blog_app
+}

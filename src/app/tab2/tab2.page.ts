@@ -11,8 +11,6 @@ import { BlogPost } from '../api.service';
 
 //
 export class Tab2Page {
-  // private currentId: number;
-  //recent changes
   newPost: BlogPost;
   posts: BlogPost[] = [];
 
@@ -48,7 +46,9 @@ export class Tab2Page {
             console.log('Post created:', response);
             this.newPost = this.createEmptyPost(); // Reset the form after successful submission
             this.posts = updatedPosts; // Update the local posts array
-            this.router.navigate(['/tabs/index']); //route back to the home page
+            this.router.navigate(['/tabs/index']).then(() => {
+              window.location.reload();
+            }); // route to homepage
           },
           (error) => {
             console.error('Error creating post:', error);

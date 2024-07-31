@@ -76,16 +76,24 @@ export class ApiService {
     );
   }
 
-  updatePost(post: BlogPost): Observable<any> {
+  updatePost(updatedPost: BlogPost): Observable<any> {
     const url = `${this.apiUrl}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.masterKey}`
     });
-    return this.http.put(url,  { blog: [post] } , { headers }).pipe(
-      catchError(error => {
-        console.error('Error updating post', error);
-        return throwError(() => new Error(error));
+
+    return this.getData().pipe(
+      switchMap(posts => {
+        const updatedPosts = posts.map(post =>
+          post.id === updatedPost.id ? updatedPost : post
+        );
+        return this.http.put(url, { blog: updatedPosts }, { headers }).pipe(
+          catchError(error => {
+            console.error('Error updating post', error);
+            return throwError(() => new Error(error));
+          })
+        );
       })
     );
   }
