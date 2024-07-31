@@ -9,28 +9,28 @@
 
 
 <ion-content [fullscreen]="true">
-  <form (ngSubmit)="createNewPost()">
+  <form [formGroup]="createPostForm" (ngSubmit)="createPostFirestore()">
     <ion-item>
       <ion-label position="floating">Title</ion-label>
-      <ion-input [(ngModel)]="newPost.title" name="title" required></ion-input>
+      <ion-input formControlName="postTitle" name="title" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Content</ion-label>
-      <ion-textarea [(ngModel)]="newPost.content" name="content" required></ion-textarea>
+      <ion-textarea formControlName="postContent" name="content" required></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Category</ion-label>
-      <ion-input [(ngModel)]="newPost.category" name="category" required></ion-input>
+      <ion-input formControlName="postCategory"  name="category" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Image URL</ion-label>
-      <ion-input [(ngModel)]="newPost.img" name="img"></ion-input>
+      <ion-input formControlName="postImg" name="img"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Snippet</ion-label>
-      <ion-input [(ngModel)]="newPost.snippet" name="snippet" required></ion-input>
+      <ion-input formControlName="postSnippet" name="snippet" required></ion-input>
     </ion-item>
-    <ion-button expand="full" type="submit">Create Post</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!createPostForm.valid">Create Post</ion-button>
   </form>
 </ion-content>
 

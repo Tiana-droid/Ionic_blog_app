@@ -9,7 +9,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { Tab1PageModule } from './tab1/tab1.module'; 
+import { Tab1PageModule } from './tab1/tab1.module';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore'; 
 
 
 @NgModule({
@@ -20,7 +22,7 @@ import { Tab1PageModule } from './tab1/tab1.module';
   // or after 30 seconds (whichever comes first).
   registrationStrategy: 'registerWhenStable:30000'
 })],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideFirebaseApp(() => initializeApp({"projectId":"ionic-blog-app","appId":"1:428893778714:web:0a1e793e962fd0797932a3","storageBucket":"ionic-blog-app.appspot.com","apiKey":"AIzaSyBNN2LLkkqQClXD3pnQAfs1QAT4cu0jSD4","authDomain":"ionic-blog-app.firebaseapp.com","messagingSenderId":"428893778714","measurementId":"G-QV8HTT14WE"})), provideFirestore(() => getFirestore())],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

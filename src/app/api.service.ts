@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Firestore } from '@angular/fire/firestore';
+import { collection, addDoc, } from 'firebase/firestore';
+
 
 export interface BlogPost {
   id: number;
@@ -27,7 +30,8 @@ export class ApiService {
   private apiUrl = 'https://api.jsonbin.io/v3/b/66894697acd3cb34a8622eaa';
   private masterKey = '$2a$10$pDhQBUZl.OMivCMn.RKLuulS5BNFGF.6uaezDfHXowa5Re//4uffS';
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly firestore: Firestore, private http: HttpClient, 
+    ){ }
 
   getData(): Observable<BlogPost[]> {
     return this.http.get<{ record: { blog: BlogPost[] } }>(`${this.apiUrl}/latest`).pipe( map(response => response.record.blog),
@@ -46,11 +50,11 @@ export class ApiService {
   }
 
 
-  createPost(data: BlogPost[]): Observable<BlogPost> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.masterKey}`);
-    const payload = {  blog: data  }; // Wrap the post in the correct structure
-    return this.http.put<BlogPost>(this.apiUrl, payload, { headers });
-  }
+  // createPost(data: BlogPost[]): Observable<BlogPost> {
+  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${this.masterKey}`);
+  //   const payload = {  blog: data  }; // Wrap the post in the correct structure
+  //   return this.http.put<BlogPost>(this.apiUrl, payload, { headers });
+  // }
 
 
   updatePosts(posts: BlogPost[]): Observable<any> {
@@ -111,4 +115,24 @@ export class ApiService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+
+
+  // FireStore
+  
+  createPostFirestore(
+    postTitle: string,
+    postContent: string,
+    postSnippet: string,
+    postImg: string,
+    id?: number,
+  ) {
+    return addDoc(collection(this.firestore, "postList"), {
+     id,
+      postTitle,
+    postContent,
+    postSnippet,
+    postImg,
+    });
+  }
 }
+
