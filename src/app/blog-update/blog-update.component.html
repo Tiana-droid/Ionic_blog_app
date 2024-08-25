@@ -9,26 +9,26 @@
 
 
 <ion-content [fullscreen]="true">
-  <form *ngIf="post" (ngSubmit)="updatePost()">
+  <form *ngIf="selectedPost" (ngSubmit)="updatePost()">
     <ion-item>
       <ion-label position="floating">Title</ion-label>
-      <ion-input [(ngModel)]="post.title" name="title" [value]="['title']" required></ion-input>
+      <ion-input [(ngModel)]="selectedPost.postTitle" name="title" [value]="['title']" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Content</ion-label>
-      <ion-textarea [(ngModel)]="post.content" name="content" required></ion-textarea>
+      <ion-textarea [(ngModel)]="selectedPost.postContent" name="content" required></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Category</ion-label>
-      <ion-input [(ngModel)]="post.category" name="category" required></ion-input>
+      <ion-input [(ngModel)]="selectedPost.postCategory" name="category" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Image URL</ion-label>
-      <ion-input [(ngModel)]="post.img" name="img"></ion-input>
+      <ion-input [(ngModel)]="selectedPost.postImg" name="img"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Snippet</ion-label>
-      <ion-input [(ngModel)]="post.snippet" name="snippet" required></ion-input>
+      <ion-input [(ngModel)]="selectedPost.postSnippet" name="snippet" required></ion-input>
     </ion-item>
     <ion-button expand="full" type="submit">Update Post</ion-button>
   </form>

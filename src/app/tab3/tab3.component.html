@@ -1,8 +1,9 @@
 <ion-header [translucent]="true" class="header">
   <ion-back-button>Go back</ion-back-button>
   <ion-toolbar>
-    <ion-title> Our Healthy hair journey - Admin Page 
-      <a style="float: right;" [routerLink]="['/tabs/index']">Home</a>
+    <ion-title>
+      Our Healthy hair journey - Admin Page
+      <a style="float: right" [routerLink]="['/tabs/index']">Home</a>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,34 +12,36 @@
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
-  <div class="post-card" *ngIf="data">
-    <ion-card *ngFor="let item of data" class="card">
+  <div class="post-card">
+    <ion-card *ngFor="let item of postList | async" class="card">
       <div class="card-content">
         <ion-card-header class="card-header">
           <ion-card-title>
             <h3 class="title">
-              {{ item.title }}
-            </h3></ion-card-title>
-          <ion-card-subtitle>{{ item.category }}</ion-card-subtitle>
+              {{ item.postTitle }}
+            </h3></ion-card-title
+          >
+          <ion-card-subtitle>{{ item.postCategory }}</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content>{{ item.snippet }}</ion-card-content>
+        <ion-card-content>{{ item.postSnippet }}</ion-card-content>
       </div>
-     
+
       <div class="icons">
-        <ion-button (click)="editPost(item)"> <ion-icon name="pencil"> </ion-icon></ion-button>
-        <ion-button (click)="deletePost(item.id)" color="danger">
+        <a [routerLink]="['/post-update/', item.id]" class="router">
+          <ion-button>
+            <ion-icon name="pencil"> </ion-icon
+          ></ion-button>
+        </a>
+        <ion-button (click)="deletePost(item.id?? '', item.postTitle)" color="danger">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
       </div>
     </ion-card>
-  </div> <br> <br>
+  </div>
+  <br />
+  <br />
 
   <a [routerLink]="['/tabs/postings']" class="router">
-    <ion-button class="new_post">
-      Create New Post
-    </ion-button>
+    <ion-button class="new_post"> Create New Post </ion-button>
   </a>
-  <app-blog-update  *ngIf="selectedPost"
-  [post]="selectedPost"
-  (updatePostEvent)="onUpdatePost($event)"></app-blog-update>
 </ion-content>

@@ -26,9 +26,9 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'post/:id', component: BlogPostComponent },
+  { path: 'post/:postId', component: BlogPostComponent },
   { path: 'tabs/admin-page', component: Tab3Component },
-  { path: 'post-update/:id', component: BlogUpdateComponent },
+  { path: 'post-update/:postId', component: BlogUpdateComponent },
   
   {
     path: '',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { BlogPost } from '../api.service';
+import { ApiService, BlogPostFirestore } from '../api.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-post',
@@ -8,24 +9,8 @@ import { BlogPost } from '../api.service';
   styleUrls: ['./post.component.scss'],
 })
 
-export class PostComponent  implements OnInit {
-
- data: BlogPost[] = [];
- errorMessage: string = '';
+export class PostComponent  {
+ postList: Observable<BlogPostFirestore[]> = this.apiService.getPosts();
 
   constructor(private apiService: ApiService) {}
-
-  ngOnInit(): void {
-    this.apiService.getData().subscribe(
-      response => {
-        this.data = response;
-        console.log(response)
-      },
-      error => {
-        this.errorMessage = error
-        console.error('Error fetching data', error);
-      }
-    );
-  }
-
 }

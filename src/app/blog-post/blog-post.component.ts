@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../api.service';
-import { BlogPost } from '../api.service';
+import { ApiService, BlogPostFirestore } from '../api.service';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
@@ -13,23 +12,32 @@ import { CommonModule } from '@angular/common';
   standalone: true,
 })
 export class BlogPostComponent implements OnInit {
-  post: BlogPost | null = null;
+  post: BlogPostFirestore | undefined ;
   errorMessage: string = '';
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
   ngOnInit(): void {
-    const postId = this.route.snapshot.paramMap.get('id');
-    if (postId) {
-      this.apiService.getPostById(+postId).subscribe(
-        response => {
-          this.post = response;
+    const postId = this.route.snapshot.paramMap.get('postId');
+  
+    if (postId !== null) {
+      // Since postId might be null, check if it's not null before calling the service
+      this.apiService.getPostDetail(postId).subscribe({
+        next: (post) => {
+          if (post) {
+            this.post = post;
+          } else {
+            this.errorMessage = 'Post not found';
+          }
         },
-        error => {
-          this.errorMessage = error;
-          console.error('There was an error fetching the post!', error);
+        error: (error) => {
+          this.errorMessage = 'Error fetching post';
+          console.error('Error fetching post details:', error);
         }
-      );
+      });
+    } else {
+      this.errorMessage = 'Invalid post ID';
     }
   }
+  
 }

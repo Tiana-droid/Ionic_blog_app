@@ -10,11 +10,10 @@
     {{ errorMessage }}
   </div>
   <div *ngIf="post">
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
-    <img src={{post.img}} alt="">
-    <p>{{ post.category }}</p>
-    <p>{{ post.date }}</p>
+    <h1>{{ post.postTitle }}</h1>
+    <p>{{ post.postContent }}</p>
+    <img src={{post.postImg}} alt="">
+    <p>{{ post.postCategory }}</p>
   </div>
 
 </ion-content>

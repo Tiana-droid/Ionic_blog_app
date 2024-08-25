@@ -9,28 +9,33 @@
 
 
 <ion-content [fullscreen]="true">
-  <form (ngSubmit)="createNewPost()">
+  <form [formGroup]="createPostForm" (submit)="createNewPost()">
     <ion-item>
       <ion-label position="floating">Title</ion-label> <br>
-      <ion-input [(ngModel)]="newPost.title" name="title" required placeholder="Your title here"></ion-input>
+      <ion-input formControlName="postTitle" name="title" required placeholder="Your title here"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Content</ion-label> <br>
-      <ion-textarea [(ngModel)]="newPost.content" name="content" required placeholder="Your content here"></ion-textarea>
+      <ion-textarea formControlName="postContent" name="content" required placeholder="Your content here"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Category</ion-label> <br>
-      <ion-input [(ngModel)]="newPost.category" name="category" required placeholder="Your category here"></ion-input>
+      <ion-input formControlName="postCategory" name="category" required placeholder="Your category here"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Image URL</ion-label> <br>
-      <ion-input [(ngModel)]="newPost.img" name="img" placeholder="Your image url here"></ion-input>
+      <ion-label position="floating">Image
+      </ion-label> <br>
+      <ion-input formControlName="postImg" name="img" type="file" (change)="onFileSelected($event)" required=""></ion-input>
     </ion-item>
+    <!-- <ion-item>
+      <ion-label position="floating">Image URL</ion-label> <br>
+      <ion-input formControlName="postImg" name="img" placeholder="Your image url here"></ion-input>
+    </ion-item> -->
     <ion-item>
       <ion-label position="floating">Snippet</ion-label> <br>
-      <ion-input [(ngModel)]="newPost.snippet" name="snippet" required placeholder="Your snippet here"></ion-input>
+      <ion-input formControlName="postSnippet" name="snippet" required placeholder="Your snippet here"></ion-input>
     </ion-item>
-    <ion-button expand="full" type="submit">Create Post</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="!createPostForm.valid">Create Post</ion-button>
   </form>
 </ion-content>
 

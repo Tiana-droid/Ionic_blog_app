@@ -1,0 +1,26 @@
+.card-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    .card-content {
+        height: 300px;
+        width: 40%;
+    }
+
+    .card-img {
+        height: 300px;
+        width: 50%;
+        border: 1px solid;
+
+        img {
+            width: 100%;
+            height: inherit;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}

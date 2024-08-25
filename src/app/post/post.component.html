@@ -1,27 +1,30 @@
 <main>
-  <div *ngIf="errorMessage" class="error-message">
-{{ errorMessage }}
-</div>
   <ion-toolbar>
-    <div class="post-card" *ngIf="data">
+    <div class="post-card">
       <h2>Recent Posts</h2>
-      <ion-card *ngFor="let item of data">
+      <ion-card *ngFor="let item of postList | async">
         <div class="img">
           <img src="" alt="" />
         </div>
-        <ion-card-header class="card-header">
-          <ion-card-title>
-            <h3 class="title">
-             {{item.title}}
-            </h3></ion-card-title
-            >
-            <ion-card-subtitle>{{item.category}}</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>{{item.snippet}}
-          <img src={{item.img}} alt="">
-        </ion-card-content>
+        <section class="card-wrapper">
+          <div class="card-content">
+            <ion-card-header class="card-header">
+              <ion-card-title>
+                <h3 class="title">
+                 {{item.postTitle}}
+                </h3></ion-card-title
+                >
+                <ion-card-subtitle>{{item.postCategory}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>{{item.postSnippet}}
+              </ion-card-content>
+          </div>
+          <div class="card-img">
+            <img src={{item.postImg}} alt="image">
+          </div>
+        </section> <br>
         <a [routerLink]="['/post', item.id]"> <ion-button>Read full article</ion-button> </a>
-      </ion-card> <br>
+      </ion-card> <br> <br>
     </div>
     <ion-button> Browse All Post</ion-button>
   </ion-toolbar>
